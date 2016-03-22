@@ -10,27 +10,26 @@
 (function(){
   'use strict';
 
-  var cat_name, find_kittens, Kitten, main, save_cat,
-      mongoose        = require('mongoose'),
-      register_models = require('./register_models');
+  var cat_name, find_kittens, Kitten, main, save_cat;
+  var mongoose = require('mongoose');
+  var register_models = require('./register_models');
 
   register_models();
 
-  Kitten          = mongoose.model('Kitten'),
-
+  Kitten = mongoose.model('Kitten'),
 
   find_kittens = function() {
     Kitten.find( function (err, kittens) {
         if (err) {
           console.error('could not find kittens');
           throw err;
-        } 
-        
+        }
+
         if ( kittens.length <= 0 ) {
           console.log('I have no kittens');
-        } 
+        }
         else {
-          console.log(kittens);   
+          console.log(kittens);
         }
         mongoose.disconnect();
 
@@ -49,7 +48,7 @@
       if (err) {
         console.error('could not save ' + cat_name);
         throw err;          // handle the error
-      } 
+      }
       console.log('saved ' + cat_name);
 
       find_kittens();
@@ -59,20 +58,15 @@
   };
 
   main = function(cat_name) {
-
-        
     mongoose.connect('mongodb://localhost/test', function(err){
       if(err) {
         throw err;
       }
       console.log('connected to MongoDB');
       save_cat(cat_name);
+      // find_kittens();
     });
-
-
   };
-
-
 
   if(require.main === module) {
 
@@ -91,7 +85,7 @@
 
     if ( typeof  cat_name !== 'undefined' && cat_name !== null) {
 
-      main(cat_name); 
+      main(cat_name);
 
     }
     else {
@@ -103,6 +97,5 @@
 
 
   }
-
 
 }());

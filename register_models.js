@@ -26,7 +26,7 @@ register_models();
 
 	register_models = function(){
 
-		var exported_model, i,  path_fn, 
+		var exported_model, i,  path_fn,
 			files 		= ['kitten.js', 'comments.js'];
 
 		for(i = 0; i < files.length; i++) {
@@ -38,16 +38,8 @@ register_models();
 			exported_model();
 
 		}
-
-
 	};
 
 	module.exports = register_models;
 
 }());
-
-
-
-
-
-
